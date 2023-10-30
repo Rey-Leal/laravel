@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Padrao Laravel
+// Route::get('/', function () {
+//     return view('clientes');
+// });
+
+// Padrao Larravel e MVC (em casos de erro usar caminho completo do controller)
+Route::get('/', 'App\Http\Controllers\ClientesController@index');
+Route::get('/{id}', 'App\Http\Controllers\ClientesController@getCliente');
