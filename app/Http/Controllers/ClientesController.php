@@ -29,20 +29,20 @@ class ClientesController extends Controller
     // GET
     public function buscar($id)
     {
-        // SELECT find($var)
+        // SELECT Class::find($var)
         $data = Clientes::find($id);
 
-        // SELECT where(campo, $var)->first()
+        // SELECT Class::where(campo, $var)->first()
         // $data = Clientes::where('id', $id)->first();
 
-        // AND ->where(campo, $var)
+        // AND Class::where(campo, $var)->where(campo, $var)
         // $data = Clientes::where('id', $id)->where('sexo', 1)->first();
 
-        // OR ->orWhere(campo, $var)
+        // OR Class::where(campo, $var)->orWhere(campo, $var)
         // $data = Clientes::where('id', $id)->orWhere('sexos', 1)->first();
 
-        // COMPARACOES ->where(campo, comp, $var)
-        // $data = Clientes::where('id', $id)->where('id', '<', 10)->first();
+        // COMPARACOES Class::where(campo, comp, $var)
+        // $data = Clientes::where('id', '<', 10)->first();
 
         // Retorna view e parametros
         return view('cliente_single', $data);
@@ -66,5 +66,27 @@ class ClientesController extends Controller
             // Redireciona para pagina principal
             return redirect('/');
         }
+    }
+
+    public function deletar($id)
+    {
+        // DELETE Class::find($var)->delete()
+        Clientes::find($id)->delete();
+
+        // Redireciona para pagina principal
+        return redirect('/');
+    }
+
+    public function atualizar($id)
+    {
+        // SELECT Class::find($var)
+        $data = Clientes::find($id);
+
+        // Atualiza dados e salva
+        $data->nome = "Novo nome";
+        $data->save();
+
+        // Redireciona para pagina principal
+        return redirect('/');
     }
 }

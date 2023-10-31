@@ -23,3 +23,4 @@ Route::get('/', 'App\Http\Controllers\ClientesController@index');
 Route::get('/{id}', 'App\Http\Controllers\ClientesController@buscar');
 
 Route::post('/', 'App\Http\Controllers\ClientesController@inserir');
+Route::post('/{id}', 'App\Http\Controllers\ClientesController@deletar');
