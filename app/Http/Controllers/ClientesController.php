@@ -21,6 +21,7 @@ class ClientesController extends Controller
         // Retorna view e paramentros
         return view('clientes', $data);
     }
+
     public function getCliente($id)
     {
         // SELECT find($var)
