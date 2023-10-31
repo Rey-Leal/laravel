@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <h2>Cliente Selecionado </h2>
+    <h2>Cliente Selecionado</h2>
     <p>Nome: {{$nome}}</p>
     <p>Sobrenome: {{$sobrenome}}</p>
     <p>Cadastro: {{$dataCadastro}}</p>

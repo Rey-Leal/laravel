@@ -9,20 +9,25 @@ use Illuminate\Http\Request;
 // Classe de Modelo 
 use App\Clientes;
 
+date_default_timezone_set('America/Sao_Paulo');
+
 // Todas classes se faz necessario sempre ser extensao da Controller
 class ClientesController extends Controller
 {
     // Para mais comandos de banco pesquisar a documentacao do Active Records
 
+    // GET
     public function index()
     {
         // all() pega todos dados
         $data['clientes'] = Clientes::all();
-        // Retorna view e paramentros
+
+        // Retorna view e parametros
         return view('clientes', $data);
     }
 
-    public function getCliente($id)
+    // GET
+    public function buscar($id)
     {
         // SELECT find($var)
         $data = Clientes::find($id);
@@ -39,6 +44,27 @@ class ClientesController extends Controller
         // COMPARACOES ->where(campo, comp, $var)
         // $data = Clientes::where('id', $id)->where('id', '<', 10)->first();
 
+        // Retorna view e parametros
         return view('cliente_single', $data);
+    }
+
+    // POST
+    public function inserir(Request $req)
+    {
+        // Valida se existe post
+        if ($req->has('nome')) {
+            // Instancia novo modelo
+            $clientes = new Clientes();
+            $clientes->nome = $req->input('nome');
+            $clientes->sobrenome = $req->input('sobrenome');
+            $clientes->sexo = $req->input('sexo');
+            $clientes->dataCadastro = date('Y-m-d H:i:s');
+
+            // Salva dados atraves do modelo
+            $clientes->save();
+
+            // Redireciona para pagina principal
+            return redirect('/');
+        }
     }
 }
